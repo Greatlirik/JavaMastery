@@ -1,0 +1,19 @@
+# ===============================
+# [ Spring Properties ]
+# ===============================
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/javamastery?user=javamastery&password=javamastery
+  mustache:
+    expose-request-attributes: true
+    suffix: .html
+
+logging:
+  level:
+    com:
+      github:
+        greatlirik:
+          DEBUG
+    org:
+      springframework: INFO
+      hibernate: ERROR
