@@ -7,9 +7,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +20,9 @@ public class EmployeeController {
 
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity <List<Employee>> getAllEmployees() {
-        List<Employee > employees =  employeeService.findAll();
-        if(employees.isEmpty()){
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = employeeService.findAll();
+        if (employees.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -50,13 +47,12 @@ public class EmployeeController {
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
-        HttpHeaders headers = new HttpHeaders();
         if (employee == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         this.employeeService.save(employee);
-        return new ResponseEntity<>(employee, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(employee,  HttpStatus.CREATED);
     }
 
 
