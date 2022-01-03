@@ -5,6 +5,7 @@ import greatlirik.training.dto.Employee;
 import java.util.List;
 
 public interface EmployeeService {
+
     List<Employee> findAll();
 
     void save(Employee employee);
@@ -14,6 +15,5 @@ public interface EmployeeService {
     void delete(long id);
 
     Employee getById(long id);
-
 
 }

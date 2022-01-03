@@ -2,16 +2,16 @@ package greatlirik.training.service;
 
 import greatlirik.training.dao.EmployeeDao;
 import greatlirik.training.dto.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    public EmployeeDao employeeDao;
+    private final EmployeeDao employeeDao;
 
     @Override
     public List<Employee> findAll() {

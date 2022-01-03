@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.*;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = JavaMasteryApplication.class)
 @SpringBootTest
-class EmployeeControllerITest {
+class EmployeeControllerIntegrationTest {
 
     TestRestTemplate testRestTemplate = new TestRestTemplate();
 

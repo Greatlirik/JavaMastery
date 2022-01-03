@@ -2,23 +2,23 @@ package greatlirik.training.dao;
 
 import greatlirik.training.dto.Employee;
 import greatlirik.training.mapper.EmployeeMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.util.List;
 
+
 @Slf4j
+@RequiredArgsConstructor
 @Repository
 public class EmployeeDaoImpl extends JdbcDaoSupport implements EmployeeDao {
 
-    @Autowired
-    DataSource dataSource;
+    private final DataSource dataSource;
 
     @PostConstruct
     private void initialize() {
@@ -47,7 +47,8 @@ public class EmployeeDaoImpl extends JdbcDaoSupport implements EmployeeDao {
         log.info("IN EmployeeDaoImpl save {}", employee);
         String sql = "INSERT INTO employee (date_of_birth,department_id,first_name,gender,job_title,last_name) VALUES(?::date,?,?,?,?,?)";
         this.getJdbcTemplate().update(sql, employee.getDate(),
-                employee.getDepartmentId(), employee.getFirstName(), employee.getGender().toString(), employee.getJobTitle(), employee.getLastName());
+                employee.getDepartmentId(), employee.getFirstName(), employee.getGender().toString(),
+                employee.getJobTitle(), employee.getLastName());
     }
 
     @Override
@@ -63,10 +64,12 @@ public class EmployeeDaoImpl extends JdbcDaoSupport implements EmployeeDao {
     @Transactional
     public void update(Employee employee) {
         log.info("IN EmployeeDaoImpl update {}", employee);
-        String sql = "UPDATE employee SET date=?::date, department_id=?, first_name=?, gender=?, job_title=?, last_name=? WHERE id=?";
+        String sql = "UPDATE employee SET date_of_birth=?::date, department_id=?, first_name=?, gender=?, job_title=?, last_name=? WHERE id=?";
         this.getJdbcTemplate().update(sql, employee.getDate(), employee.getDepartmentId(), employee.getFirstName(),
-                employee.getGender(), employee.getJobTitle(),
+                employee.getGender().toString(), employee.getJobTitle(),
                 employee.getLastName(), employee.getEmployeeId());
 
     }
+
+
 }

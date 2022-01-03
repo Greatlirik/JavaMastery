@@ -14,4 +14,5 @@ public interface EmployeeDao {
     void delete(Long id);
 
     void update(Employee employee);
+
 }
