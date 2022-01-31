@@ -1,7 +1,7 @@
 package greatlirik.training.controller;
 
 import greatlirik.training.JavaMasteryApplication;
-import greatlirik.training.dto.Employee;
+import greatlirik.training.model.Employee;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;

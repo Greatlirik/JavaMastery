@@ -1,4 +1,4 @@
-package greatlirik.training.dto;
+package greatlirik.training.model;
 
 public enum Gender {
     MALE,

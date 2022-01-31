@@ -8,3 +8,4 @@ CREATE TABLE employee (
     date_of_birth DATE NOT NULL,
     CONSTRAINT pk_employee_id PRIMARY KEY (id)
 );
+CREATE SEQUENCE employees_id_seq START WITH 5 INCREMENT BY 1;

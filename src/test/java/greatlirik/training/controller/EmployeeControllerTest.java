@@ -1,8 +1,9 @@
 package greatlirik.training.controller;
 
-import greatlirik.training.dto.Employee;
-import greatlirik.training.dto.Gender;
-import greatlirik.training.service.EmployeeService;
+import greatlirik.training.model.Employee;
+import greatlirik.training.model.Gender;
+import greatlirik.training.model.dto.EmployeeDto;
+import greatlirik.training.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,56 +12,62 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.event.annotation.BeforeTestExecution;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Optional;
 
 
 @ExtendWith(MockitoExtension.class)
 class EmployeeControllerTest {
 
 
-
     @Mock
-    private EmployeeService employeeService;
+    private EmployeeRepository employeeRepository;
 
     @InjectMocks
     EmployeeController controller;
 
     @BeforeTestExecution
-    public void setUp(){
+    public void setUp() {
         Employee employeeKirill = new Employee(
-                214L,"Kirill","Zhuk",2L, Gender.MALE,"tester", new Date());
-        Mockito.when(employeeService.getById(employeeKirill.getEmployeeId())).thenReturn(employeeKirill);
-
+                214L, "Kirill", "Zhuk", 2L, Gender.MALE, "tester", LocalDate.now());
+        Mockito.when(employeeRepository.findById(employeeKirill.getEmployeeId())).thenReturn(java.util.Optional.of(employeeKirill));
     }
 
 
     @Test
     void getAllEmployees() {
         controller.getAllEmployees();
-        Mockito.verify(employeeService).findAll();
+        Mockito.verify(employeeRepository).findAll();
     }
 
     @Test
     void getEmployee() {
         long id = 214L;
         controller.getEmployee(id);
-        Mockito.verify(employeeService).getById(id);
+        Mockito.verify(employeeRepository).findById(id);
 
     }
 
     @Test
     void saveEmployee() {
-        long id = 214L;
-        controller.saveEmployee(employeeService.getById(id));
-        Mockito.verify(employeeService).save(employeeService.getById(id));
-
+        EmployeeDto employeeDto = new EmployeeDto();
+        controller.saveEmployee(employeeDto);
+        Mockito.verify(employeeRepository).save(employeeDto.toEmployee());
     }
 
     @Test
-    void updateEmployee() {
+    void deleteEmployee() {
         long id = 214L;
-        controller.updateEmployee(employeeService.getById(id));
-        Mockito.verify(employeeService).update(employeeService.getById(id));
+        controller.deleteEmployee(id);
+        Mockito.verify(employeeRepository).deleteById(id);
     }
 
+    @Test
+    void getEmployeeByFirstNameAndLastName() {
+        String firstName = "";
+        String lastName = "";
+        controller.getEmployeeByFirstNameAndLastName(firstName, lastName);
+        Mockito.verify(employeeRepository).findByFirstNameAndLastNameIgnoreCase(firstName, lastName);
+    }
 }
