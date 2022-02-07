@@ -8,6 +8,6 @@ public class BirthDateValidator implements ConstraintValidator<BirthDate, LocalD
 
     @Override
     public boolean isValid(final LocalDate checkLocalDate, final ConstraintValidatorContext constraintValidatorContext) {
-        return LocalDate.now().getYear() - checkLocalDate.getYear() >=18;
+        return LocalDate.now().getYear() - checkLocalDate.getYear() >= 18;
     }
 }

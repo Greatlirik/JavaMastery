@@ -1,4 +1,4 @@
-package greatlirik.training.model.dto;
+package greatlirik.training.dto;
 
 import greatlirik.training.model.Employee;
 import greatlirik.training.model.Gender;

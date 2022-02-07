@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: javamastery
     restart: on-failure
     ports:
-      - 5432:5432
+      - 5433:5432
     networks:
       - internal
     volumes:

@@ -2,7 +2,7 @@ package greatlirik.training.controller;
 
 import greatlirik.training.model.Employee;
 import greatlirik.training.model.Gender;
-import greatlirik.training.model.dto.EmployeeDto;
+import greatlirik.training.dto.EmployeeDto;
 import greatlirik.training.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.event.annotation.BeforeTestExecution;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Optional;
+
 
 
 @ExtendWith(MockitoExtension.class)
@@ -65,9 +64,9 @@ class EmployeeControllerTest {
 
     @Test
     void getEmployeeByFirstNameAndLastName() {
-        String firstName = "";
-        String lastName = "";
+        String firstName = "ki";
+        String lastName = "zh";
         controller.getEmployeeByFirstNameAndLastName(firstName, lastName);
-        Mockito.verify(employeeRepository).findByFirstNameAndLastNameIgnoreCase(firstName, lastName);
+        Mockito.verify(employeeRepository).findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(firstName, lastName);
     }
 }

@@ -2,8 +2,11 @@
 # [ Spring Properties ]
 # ===============================
 spring:
+  activemq.broker-url: tcp://localhost:61616
+  activemq.user: admin
+  activemq.password: admin
   datasource:
-    url: jdbc:postgresql://localhost:5432/javamastery?user=javamastery&password=javamastery
+    url: jdbc:postgresql://localhost:5433/javamastery?user=javamastery&password=javamastery
   mustache:
     expose-request-attributes: true
     suffix: .html
@@ -17,3 +20,6 @@ logging:
     org:
       springframework: INFO
       hibernate: ERROR
+
+management.endpoints.web.exposure.include: health,info,env,beans,mappings,loggers
+

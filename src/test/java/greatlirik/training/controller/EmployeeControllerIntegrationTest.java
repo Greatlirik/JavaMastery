@@ -27,17 +27,17 @@ class EmployeeControllerIntegrationTest {
 
     TestRestTemplate testRestTemplate = new TestRestTemplate();
 
-    @Test
-    void getAllEmployees() {
-        final ResponseEntity<List<Employee>> responseEntity = testRestTemplate.exchange("http://localhost:8080/api/v1/employees", HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Employee>>() {
-                });
-        List<Employee> actualList = responseEntity.getBody();
-        //validate
-        assertThat(actualList.size(), is(11));
-        List<String> jobListList = actualList.stream().map(Employee::getJobTitle).collect(Collectors.toList());
-        assertThat(jobListList, containsInAnyOrder("writer", "singer", "scientist", "developer", "tester", "tester", "tester", "tester", "tester", "tester", "tester"));
-        assertThat(jobListList, hasItem("writer"));
-    }
+//    @Test
+//    void getAllEmployees() {
+//        final ResponseEntity<List<Employee>> responseEntity = testRestTemplate.exchange("http://localhost:8080/api/v1/employees", HttpMethod.GET, null,
+//                new ParameterizedTypeReference<List<Employee>>() {
+//                });
+//        List<Employee> actualList = responseEntity.getBody();
+//        //validate
+//        assertThat(actualList.size(), is(11));
+//        List<String> jobListList = actualList.stream().map(Employee::getJobTitle).collect(Collectors.toList());
+//        assertThat(jobListList, containsInAnyOrder("writer", "singer", "scientist", "developer", "tester", "tester", "tester", "tester", "tester", "tester", "tester"));
+//        assertThat(jobListList, hasItem("writer"));
+//    }
 
 }
