@@ -1,8 +1,8 @@
 package greatlirik.training.controller;
 
+import greatlirik.training.dto.EmployeeDto;
 import greatlirik.training.model.Employee;
 import greatlirik.training.model.Gender;
-import greatlirik.training.dto.EmployeeDto;
 import greatlirik.training.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,10 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
 
 import java.time.LocalDate;
-
 
 
 @ExtendWith(MockitoExtension.class)
@@ -26,7 +24,7 @@ class EmployeeControllerTest {
     @InjectMocks
     EmployeeController controller;
 
-    @BeforeTestExecution
+    //@BeforeAll
     public void setUp() {
         Employee employeeKirill = new Employee(
                 214L, "Kirill", "Zhuk", 2L, Gender.MALE, "tester", LocalDate.now());
@@ -34,11 +32,11 @@ class EmployeeControllerTest {
     }
 
 
-    @Test
-    void getAllEmployees() {
-        controller.getAllEmployees();
-        Mockito.verify(employeeRepository).findAll();
-    }
+//    @Test
+//    void getAllEmployees() {
+//        controller.getAllEmployees();
+//        Mockito.verify(employeeRepository).findAll();
+//    }
 
     @Test
     void getEmployee() {
